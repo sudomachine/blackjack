@@ -2,9 +2,18 @@ cmake_minimum_required(VERSION 3.14)
 
 project(blackjack)
 
-set(SOURCES sources/Game.cpp)
-set(HEADERS headers/Game.h)
+set(SRC_DIR sources)
+set(HDR_DIR headers)
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} sources/main.cpp)
+set(SOURCES
+    ${SRC_DIR}/main.cpp
+    ${SRC_DIR}/Game.cpp
+    ${SRC_DIR}/Card.cpp)
 
-target_include_directories(${PROJECT_NAME} PRIVATE headers)
+set(HEADERS
+    ${HDR_DIR}/Game.h
+    ${HDR_DIR}/Card.h)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${HDR_DIR})
