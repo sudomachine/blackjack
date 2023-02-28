@@ -2,6 +2,7 @@
 #define BLACKJACK_GAME_H
 
 #include <cstddef>
+#include <vector>
 
 namespace blackjack
 {
@@ -11,7 +12,8 @@ class Game
 
 private:
     // сброс; Discard Tray
-    size_t discard_tray_;
+    std::vector<Card> discard_tray_;
+    //size_t discard_tray_;
 
     // набор карт; Shoe
     size_t shoe_;

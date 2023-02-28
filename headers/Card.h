@@ -1,26 +1,24 @@
 #ifndef BLACKJACK_CARD_H
 #define BLACKJACK_CARD_H
 
-//#include <cstddef>
+#include <string>
 
-namespace blackjack
-{
+namespace blackjack {
 class Card
 {
 public:
 
-enum class SUIT
+enum SUIT
 {
-    SPADES,
+    SPADES = 1,
     HEARTS,
     CLUBS,
     DIAMONDS
 };
 
-enum class VALUE
+enum VALUE
 {
-    ONE = 1,
-    TWO,
+    TWO = 2,
     THREE,
     FOUR,
     FIVE,
@@ -29,13 +27,13 @@ enum class VALUE
     EIGHT,
     NINE,
     TEN,
-    JACK = 10,
-    QUEEN = 10,
-    KING = 10,
-    ACE = 10
+    JACK,
+    QUEEN,
+    KING,
+    ACE
 };
 
-enum class VISIBILITY
+enum VISIBILITY
 {
     VISIBLE,
     HIDDEN
@@ -44,13 +42,28 @@ enum class VISIBILITY
 public:
     Card() = delete;
 
-    Card(const Card& rhs);
-
     Card(SUIT suit, VALUE value, VISIBILITY visibility);
+
+    Card(const Card& other);
+
+    Card(Card&& other);
 
     Card operator=(const Card& rhs);
 
-public:
+    bool operator==(const Card& rhs);
+    bool operator!=(const Card& rhs);
+    bool operator<(const Card& rhs);
+    bool operator<=(const Card& rhs);
+    bool operator>(const Card& rhs);
+    bool operator>=(const Card& rhs);
+
+    friend std::ostream& operator<<(std::ostream& stream, const Card& card);
+
+    std::string suit() const;
+    std::string value() const;
+    std::string visibility() const;
+
+private:
     SUIT suit_;
     VALUE value_;
     VISIBILITY visibility_;
